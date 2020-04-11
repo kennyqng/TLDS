@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">            
 </head>
 <body>
-
-<<<<<<< HEAD
     <h1>TL;DS</h1>
     <p>Your smart search summarizer</p>
 
@@ -40,55 +38,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WikiSummary</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
 
-<body>
-<header>WikiSummary</header>
-<div id="searchBox">
-    <input id="searchInput" type="text">
-    <button id="searchBtn">Search</button>
-</div>
-<div id="card"></div>
-
-    
-</body>
-
-<script>
-    $("#searchBtn").on("click", function(){
-        var searchTerm = $("#searchInput").val();
-        var beginningURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=";
-        var endingURL = "&utf8=&format=json&origin=*";
-
-        var queryURL = beginningURL + searchTerm + endingURL;
-
-        console.log(queryURL);
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .then(function(response){
-            console.log(response);
-            var definition = response.query.search[0].snippet;
-            var newDiv = $("<div>"+definition+"</dv>");
-            // var p = $("<p>").text(definition);
-            // newDiv.prepend(p);
-
-            $("#card").prepend(newDiv);
-
-        })
-        
-    })
-
-
-</script>
-</html>
->>>>>>> 98cdade0d5ca6969bd9d3945c319e2000dc0d277
