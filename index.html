@@ -1,51 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WikiSummary</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>TL;DS | Your smart search summarizer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">            
 </head>
-
 <body>
-<header>WikiSummary</header>
-<div id="searchBox">
-    <input id="searchInput" type="text">
-    <button id="searchBtn">Search</button>
+    <h1>TL;DS</h1>
+    <p>Your smart search summarizer</p>
+
+    <div class="row">
+        <div class="input-field col s12">
+          <input id="searchInput" type="text" placeholder="What would you like to know?">
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="col s12 m7">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="tiger.png" id="cardImage">
+            </div>
+            <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4" id="cardTitle" >Card Title<i class="material-icons right">more_vert</i></span>
+            <!-- <p><a href="#">This is a link</a></p> -->
+            </div>
+            <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4" id="cardTitleSlide">Card Title<i class="material-icons right">close</i></span>
+            <p id="cardText">Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+        </div>
+    </div>          
 </div>
-<div id="card"></div>
 
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
-
-<script>
-    $("#searchBtn").on("click", function(){
-        var searchTerm = $("#searchInput").val();
-        var beginningURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=";
-        var endingURL = "&utf8=&format=json&origin=*";
-
-        var queryURL = beginningURL + searchTerm + endingURL;
-
-        console.log(queryURL);
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .then(function(response){
-            console.log(response);
-            var definition = response.query.search[0].snippet;
-            var newDiv = $("<div>"+definition+"</dv>");
-            // var p = $("<p>").text(definition);
-            // newDiv.prepend(p);
-
-            $("#card").prepend(newDiv);
-
-        })
-        
-    })
-
-
-</script>
 </html>
+
