@@ -1,13 +1,19 @@
-$(document).ready(function(){
-    
-    $.ajax({
+var apiKey = "kIcbQMoCW5nw4kogd4UhHlAJh1zG5-GC0uyb6nYCFjI";
 
-        url: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjEyNzIzOX0',
-        type: 'GET',
-        dataType: 'json',
+var unsplashURL = "https://api.unsplash.com/search/?query=";
 
-        success: function(data){
-            console.log(data);
-        }
-    })
+var id = "&client_id="
+
+var search = "panda";
+
+$.ajax({
+    url: unsplashURL + search + id + apiKey,
+    method: 'GET'
 })
+.then(function(response){
+    console.log(response);
+    var url = response.photos.results[0].urls.small;
+    $("#cardImage").attr("src", url);
+})
+$("")
+
