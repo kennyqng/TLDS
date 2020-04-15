@@ -9,6 +9,7 @@ Image specific
 
 html {
     height: 100%;
+    min-height: 100% !important;
 }
 
 body {
@@ -16,6 +17,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  height: 100%;
 }
 
 #title {
@@ -41,6 +43,8 @@ body {
   outline: none;
   float: left;
   margin: 30px 0 0 0;
+  border: none;
+  cursor: pointer;
 }
 
 #input-background {
@@ -50,3 +54,30 @@ body {
 #contentShow {
   padding: 0px;
 }
+
+
+
+.card-image {
+  max-height: 50vh!important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.card {
+  text-align: left;
+  margin-top: 0px!important;
+  height: 60px;
+}
+
+#cardTitleSlide {
+  padding: 0 5px 0 10px;
+  font-weight: 600;
+  color: #0F8898!important;
+}
+
+#cardText {
+  padding: 0 5px 10px 10px;
+  margin: 0;
+}
+
