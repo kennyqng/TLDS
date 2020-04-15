@@ -4,16 +4,17 @@ var unsplashURL = "https://api.unsplash.com/search/?query=";
 
 var id = "&client_id="
 
-var search = "panda";
 
-$.ajax({
-    url: unsplashURL + search + id + apiKey,
-    method: 'GET'
-})
-.then(function(response){
-    console.log(response);
-    var url = response.photos.results[0].urls.small;
-    $("#cardImage").attr("src", url);
-})
-$("")
+$(".button").on("click", function(){
+    var search = $("#searchInput").val();
 
+    $.ajax({
+        url: unsplashURL + search + id + apiKey,
+        method: 'GET'
+    })
+    .then(function(response){
+        console.log(response);
+        var url = response.photos.results[0].urls.small;
+        $("#cardImage").attr("src", url);
+    })
+})
