@@ -24,16 +24,19 @@ $(".button").on("click", function(){
         $("#cardImage").attr("src", url);
     });
 
-    wikiRequest(search);
+    wikiSearch(search);
 });
 
 //Function to search wikipedia for possible pages to display-----------------Not being used------------------------
 function wikiSearch(search) {
+    var resultNum = 0;
+
     $.ajax({
         url: `https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=${search}`,
         method: 'GET'
-    }).then(function(response) {
-        console.log(response);        
+    }).then(function(data) {
+        console.log(data);
+        wikiRequest(data.query.search[resultNum].title);        
     });
 }
 
@@ -41,12 +44,16 @@ function wikiSearch(search) {
 function wikiRequest(search) {
     $.ajax({
         url: `https://en.wikipedia.org/api/rest_v1/page/summary/${search}`,
-        method: 'GET'
-    })
-    .then(function(response) {
-        console.log(response);
-        $('#cardText').text(response.extract);
-   
-        $('#cardTitleSlide').text(response.title);
+        method: 'GET',
+        success: function(response) {
+          console.log(response);
+          $('#cardText').text(response.extract);   
+          $('#cardTitleSlide').text(response.title);
+        },
+        error: function() {
+            console.log('404 Error');
+            resultNum++;
+            wikiRequest(data.query.search[resultNum].title);
+        }
     });
 }
