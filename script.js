@@ -27,7 +27,7 @@ $(".button").on("click", function(){
     wikiSearch(search);
 });
 
-//Function to search wikipedia for possible pages to display-----------------Not being used------------------------
+//Function to search wikipedia for possible pages to display--------------------------------------------------------
 function wikiSearch(search) {
     var resultNum = 0;
 
