@@ -8,6 +8,8 @@ var id = "&client_id="
 $(".button").on("click", function(){
     var search = $("#searchInput").val();
 
+    $("#hideCard").attr('style', 'display: block');
+
     $('#cardText').text('');
     $('#cardTitle').text('');
     $('#cardTitleSlide').text('');
@@ -44,16 +46,14 @@ function wikiRequest(search) {
         url: `https://en.wikipedia.org/api/rest_v1/page/summary/${search}`,
         method: 'GET',
         success: function(response) {
-            console.log(response);
-            $('#cardText').text(response.extract);
-            $('#cardTitle').text(response.displaytitle);
-            $('#cardTitleSlide').text(response.displaytitle);
+          console.log(response);
+          $('#cardText').text(response.extract);   
+          $('#cardTitleSlide').text(response.title);
         },
         error: function() {
             console.log('404 Error');
             resultNum++;
             wikiRequest(data.query.search[resultNum].title);
         }
-    })
-    .then();
+    });
 }

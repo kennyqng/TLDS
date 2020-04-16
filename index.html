@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <div id="title">
-        <h1>TL;DS</h1>
-        <p>Your smart search summarizer</p>
+        <h1 id="customTitle">TL;DS</h1>
+        <p id="subTitle"  alt="the smartest search engine summarizer user friendly ad free">Your smart search summarizer</p>
     </div>
 
     <div class="container center-align">
@@ -21,21 +23,25 @@
             </div>
             <div class="button s1"></div>
         </div>
-    
-        <div class="row">
+
+        <div class="row" id="hideCard">
             <div class="col s12" id="contentShow">
                 <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" id="cardImage">
-                    </div>
-                    <div class="card-content">
+
+                    <span class="card-title grey-text text-darken-4" id="cardTitleSlide">Card Title</span>
+                    <p id="cardText">
+                        Here is some information about the users search      
+                    </p>   
+
+                    <div class="card-image">
+                        <img id="cardImage">
+                    </div>          
+                                        
+                    <!-- <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4" id="cardTitle" >Card Title<i class="material-icons right">more_vert</i></span>
-                        <!-- <p><a href="#">This is a link</a></p> -->
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4" id="cardTitleSlide">Card Title<i class="material-icons right">close</i></span>
-                        <p id="cardText">Here is some more information about this product that is only revealed once clicked on.</p>
-                    </div>
+                         <p><a href="#">This is a link</a></p> 
+                    </div>  -->
+                    
                 </div>
             </div>          
         </div>
