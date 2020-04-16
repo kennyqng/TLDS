@@ -8,6 +8,8 @@ var id = "&client_id="
 $(".button").on("click", function(){
     var search = $("#searchInput").val();
 
+    $("#hideCard").attr('style', 'display: block');
+
     $('#cardText').text('');
     $('#cardTitle').text('');
     $('#cardTitleSlide').text('');
@@ -44,7 +46,7 @@ function wikiRequest(search) {
     .then(function(response) {
         console.log(response);
         $('#cardText').text(response.extract);
-        $('#cardTitle').text(response.displaytitle);
-        $('#cardTitleSlide').text(response.displaytitle);
+   
+        $('#cardTitleSlide').text(response.title);
     });
 }
