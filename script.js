@@ -5,15 +5,30 @@ var unsplashURL = "https://api.unsplash.com/search/?query=";
 var id = "&client_id="
 
 
+$("#searchInput").on("keyup", function(e) {
+    if(e.which == 13 || e.keyCode == 13) {
+        search();
+    }
+});
+
 $(".button").on("click", function(){
+    search();
+});
+
+
+//Performs main search---------------------------------------------------------------------------------------------
+function search() {
     var search = $("#searchInput").val();
 
     $("#hideCard").attr('style', 'display: block');
+    $('#searchInput').val('');
 
-    $('#cardText').text('');
-    $('#cardTitle').text('');
-    $('#cardTitleSlide').text('');
+    wikiSearch(search);
+    imageSearch(search);
+}
 
+//Function for unsplash search-------------------------------------------------------------------------------------
+function imageSearch(search) {
     $.ajax({
         url: unsplashURL + search + id + apiKey,
         method: 'GET'
@@ -23,9 +38,7 @@ $(".button").on("click", function(){
         var url = response.photos.results[0].urls.small;
         $("#cardImage").attr("src", url);
     });
-
-    wikiSearch(search);
-});
+}
 
 //Function to search wikipedia for possible pages to display--------------------------------------------------------
 function wikiSearch(search) {
@@ -47,11 +60,17 @@ function wikiRequest(search) {
         method: 'GET',
         success: function(response) {
           console.log(response);
-          $('#cardText').text(response.extract);   
-          $('#cardTitleSlide').text(response.title);
+          if(response.type === 'disambiguation') {
+            console.log('ambiguous');
+            $('#cardText').text('');   
+            $('#cardTitleSlide').text('');
+            $("#cardImage").attr("src", 'refine-search.png');
+          }else {  
+            $('#cardText').text(response.extract);   
+            $('#cardTitleSlide').text(response.title);
+          }
         },
         error: function() {
-            console.log('404 Error');
             resultNum++;
             wikiRequest(data.query.search[resultNum].title);
         }
