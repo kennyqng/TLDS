@@ -45,9 +45,10 @@ function wikiSearch(search) {
     var resultNum = 0;
 
     $.ajax({
-        url: `https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=${search}&origin=*`,
+        url: `https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=${search}`,
         method: 'GET',
-        headers: {'Access-Control-Allow-Origin': "https://kennyqng.github.io/project-01/"}
+        crossDomain: true,
+        dataType: 'jsonp',
     }).then(function(data) {
         console.log(data);
         wikiRequest(data.query.search[resultNum].title);        
