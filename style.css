@@ -1,0 +1,102 @@
+/* Table of Contents
+
+Foundational styles
+body - line 9 - controls body elements on page
+
+Image specific 
+
+ */
+
+html {
+    height: 100%;
+    min-height: 100% !important;
+}
+
+body {
+  background: url(earth.png);
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  background-position: center;
+ 
+
+}
+
+
+
+
+#title {
+  text-align: center;
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+#searchInput {
+  max-width: 600px;
+}
+
+.container {
+  max-width: 600px!important;
+}
+
+.button {
+  background: url(submit-arrow.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 25px;
+  height: 25px;
+  outline: none;
+  float: left;
+  margin: 30px 0 0 0;
+  border: none;
+  cursor: pointer;
+}
+
+#input-background {
+  background-color:#ffffff;
+}
+
+#contentShow {
+  padding: 0px;
+}
+
+
+
+#card-image {
+  height: 50px!important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.card {
+  text-align: left;
+  margin-top: 0px!important;
+  overflow: scroll;
+  height: 70vh;
+}
+
+#cardTitleSlide {
+  padding: 0 5px 0 10px;
+  font-weight: 600;
+  color: #0F8898!important;
+}
+
+#cardText {
+  padding: 0 10px 10px 10px;
+  margin: 0;
+}
+
+#hideCard {
+  display: none;
+}
+
+#customTitle {
+  font-family: 'Leckerli One', cursive;
+  letter-spacing: 2px;
+  margin-bottom: 0px;
+  font-size: 90px;
+}
+
+#subTitle {
+  margin-top: 0px;
+}
