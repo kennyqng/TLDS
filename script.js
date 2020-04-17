@@ -46,7 +46,8 @@ function wikiSearch(search) {
 
     $.ajax({
         url: `https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=${search}`,
-        method: 'GET'
+        method: 'GET',
+        headers: {'access-control-allow-origin': "https://kennyqng.github.io/project-01/"}
     }).then(function(data) {
         console.log(data);
         wikiRequest(data.query.search[resultNum].title);        
