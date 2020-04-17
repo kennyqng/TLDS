@@ -4,7 +4,7 @@ var unsplashURL = "https://api.unsplash.com/search/?query=";
 
 var id = "&client_id="
 
-
+//Events=====================================
 $("#searchInput").on("keyup", function(e) {
     if(e.which == 13 || e.keyCode == 13) {
         search();
@@ -16,6 +16,7 @@ $(".button").on("click", function(){
 });
 
 
+//FUNCTIONS===================================
 //Performs main search---------------------------------------------------------------------------------------------
 function search() {
     var search = $("#searchInput").val();
@@ -24,7 +25,6 @@ function search() {
     $('#searchInput').val('');
 
     wikiSearch(search);
-    imageSearch(search);
 }
 
 //Function for unsplash search-------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ function wikiRequest(search) {
           }else {  
             $('#cardText').text(response.extract);   
             $('#cardTitleSlide').text(response.title);
+            imageSearch(search);
           }
         },
         error: function() {
