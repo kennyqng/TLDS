@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  background: url(Earth.png);
+  background: url("Earth.png");
   background-repeat: no-repeat;
   /* background-size: cover; */
   background-position: center;
