@@ -100,3 +100,12 @@ body {
 #subTitle {
   margin-top: 0px;
 }
+#progress1 {
+  background-color: orange;
+  width: 100%;
+  height: 5px;
+}
+.outline{
+  height: 5px;
+  /* background-color: orange; */
+}

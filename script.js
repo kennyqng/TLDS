@@ -9,9 +9,11 @@ var isSearching = false;
 //Events=====================================
 $("#searchInput").on("keyup", function(e) {
     if(e.which == 13 || e.keyCode == 13) {
+
         if(isSearching === false){
             isSearching = true;
             search();
+            countDown();
             setTimeout(function(){isSearching = false;}, 2000);
         }
     }
@@ -21,12 +23,34 @@ $(".button").on("click", function(){
     if(isSearching === false){
         isSearching = true;
         search();
+        countDown();
         setTimeout(function(){isSearching = false;}, 2000);
     }
+
 });
 
 
 //FUNCTIONS===================================
+// Timer-----------------------------------
+function countDown(){
+    var timeLeft = 100;
+    var barWidth = 100;
+    
+    var timeInterval = setInterval(function(){
+        timeLeft--;
+        barWidth -= 1;
+        var progressBar = document.getElementById("progress1");
+        progressBar.style.width = barWidth + "%";
+    
+        if (timeLeft === 0){
+            clearInterval(timeInterval);
+        }
+    },1000);
+}
+
+
+
+
 //Performs main search---------------------------------------------------------------------------------------------
 function search() {
     var search = $("#searchInput").val();
