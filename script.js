@@ -4,17 +4,29 @@ var unsplashURL = "https://api.unsplash.com/search/?query=";
 
 var id = "&client_id="
 
+var isSearching = false;
+
 //Events=====================================
 $("#searchInput").on("keyup", function(e) {
     if(e.which == 13 || e.keyCode == 13) {
-        search();
-        countDown();
+
+        if(isSearching === false){
+            isSearching = true;
+            search();
+            countDown();
+            setTimeout(function(){isSearching = false;}, 2000);
+        }
     }
 });
 
 $(".button").on("click", function(){
-    search();
-    countDown();
+    if(isSearching === false){
+        isSearching = true;
+        search();
+        countDown();
+        setTimeout(function(){isSearching = false;}, 2000);
+    }
+
 });
 
 
