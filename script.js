@@ -4,16 +4,57 @@ var unsplashURL = "https://api.unsplash.com/search/?query=";
 
 var id = "&client_id="
 
+var isSearching = false;
 
+var timeInterval; //made interval global - kenny 4/19
+
+var progressBar = document.getElementById("progress1"); //made bar global - kenny 4/19
+
+//Events=====================================
 $("#searchInput").on("keyup", function(e) {
     if(e.which == 13 || e.keyCode == 13) {
-        search();
+
+        if(isSearching === false){
+            isSearching = true;
+            clearInterval(timeInterval);
+            search();
+            countDown();
+            setTimeout(function(){isSearching = false;}, 2000);
+        }
     }
 });
 
 $(".button").on("click", function(){
-    search();
+    if(isSearching === false){
+        isSearching = true;
+        clearInterval(timeInterval);
+        search();
+        countDown();
+        setTimeout(function(){isSearching = false;}, 2000);
+    }
+
 });
+
+
+//FUNCTIONS===================================
+// Timer-----------------------------------
+function countDown(){
+    var timeLeft = 60; //change time limit to 60 seconds - kenny 4/19
+    var barWidth = 100;
+    
+    timeInterval = setInterval(function(){
+        timeLeft--;
+        barWidth -= (10/6); //visual correction for bar reduction for 60 secs in a 100% bar. - kenny 4/19
+        progressBar.style.width = barWidth + "%";
+    
+        if (timeLeft < 0){
+            clearInterval(timeInterval);
+            alert("times up!");
+        }
+    },1000);
+}
+
+
 
 
 //Performs main search---------------------------------------------------------------------------------------------
@@ -24,7 +65,6 @@ function search() {
     $('#searchInput').val('');
 
     wikiSearch(search);
-    imageSearch(search);
 }
 
 //Function for unsplash search-------------------------------------------------------------------------------------
@@ -35,7 +75,7 @@ function imageSearch(search) {
     })
     .then(function(response){
         console.log(response);
-        var url = response.photos.results[0].urls.small;
+        var url = response.photos.results[0].urls.regular; //change pull regular quality pictures instead of small
         $("#cardImage").attr("src", url);
     });
 }
@@ -46,7 +86,9 @@ function wikiSearch(search) {
 
     $.ajax({
         url: `https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=${search}`,
-        method: 'GET'
+        method: 'GET',
+        crossDomain: true,
+        dataType: 'jsonp',
     }).then(function(data) {
         console.log(data);
         wikiRequest(data.query.search[resultNum].title);        
@@ -68,6 +110,7 @@ function wikiRequest(search) {
           }else {  
             $('#cardText').text(response.extract);   
             $('#cardTitleSlide').text(response.title);
+            imageSearch(search);
           }
         },
         error: function() {
