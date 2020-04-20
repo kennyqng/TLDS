@@ -107,5 +107,7 @@ body {
 }
 .outline{
   height: 5px;
-  /* background-color: orange; */
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
 }

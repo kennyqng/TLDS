@@ -6,49 +6,61 @@ var id = "&client_id="
 
 var isSearching = false;
 
+var timeInterval;
+
+var alarmDiv = $("<div class='alarm'></div>").css("height", "25px");
+
 //Events=====================================
 $("#searchInput").on("keyup", function(e) {
     if(e.which == 13 || e.keyCode == 13) {
-
-        if(isSearching === false){
-            isSearching = true;
-            search();
-            countDown();
-            setTimeout(function(){isSearching = false;}, 2000);
-        }
+        initiateSearch();
     }
 });
 
 $(".button").on("click", function(){
+    initiateSearch();
+});
+
+
+
+
+//FUNCTIONS===================================
+// initiate search
+function initiateSearch(){
     if(isSearching === false){
+        resetBar();
         isSearching = true;
+        clearInterval(timeInterval);
         search();
         countDown();
         setTimeout(function(){isSearching = false;}, 2000);
     }
-
-});
-
-
-//FUNCTIONS===================================
+}
 // Timer-----------------------------------
 function countDown(){
-    var timeLeft = 100;
+    var timeLeft = 60; //change time limit to 60 seconds - kenny 4/19
     var barWidth = 100;
     
-    var timeInterval = setInterval(function(){
+    timeInterval = setInterval(function(){
         timeLeft--;
-        barWidth -= 1;
-        var progressBar = document.getElementById("progress1");
-        progressBar.style.width = barWidth + "%";
+        barWidth -= (10/6); //visual correction for bar reduction for 60 secs in a 100% bar. - kenny 4/19
+        $("#progress1").css("width", barWidth + "%");
     
-        if (timeLeft === 0){
+        if (timeLeft < 0){
             clearInterval(timeInterval);
+            alarmDiv.text("Reminder: You've been here for 1 minute.");
+            $(".outline").css("height", "25px");
+            $(".outline").prepend(alarmDiv);
+            // alert("times up!");
         }
     },1000);
 }
 
-
+// remove reminder text
+function resetBar(){
+    alarmDiv.remove();
+    $(".outline").css("height", "5px");
+}
 
 
 //Performs main search---------------------------------------------------------------------------------------------
@@ -69,8 +81,16 @@ function imageSearch(search) {
     })
     .then(function(response){
         console.log(response);
-        var url = response.photos.results[0].urls.small;
-        $("#cardImage").attr("src", url);
+        
+        console.log("total photos: " + response.photos.total);
+        if(response.photos.total === 0)
+        {
+            $("#cardImage").attr("src", "noImg.jpg");
+        }
+        else{
+            var url = response.photos.results[0].urls.regular; //change pull regular quality pictures instead of small
+            $("#cardImage").attr("src", url);
+        }
     });
 }
 
