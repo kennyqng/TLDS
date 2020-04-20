@@ -6,37 +6,36 @@ var id = "&client_id="
 
 var isSearching = false;
 
-var timeInterval; //made interval global - kenny 4/19
+var timeInterval;
 
-var progressBar = document.getElementById("progress1"); //made bar global - kenny 4/19
+var alarmDiv = $("<div class='alarm'></div>").css("height", "25px");
 
 //Events=====================================
 $("#searchInput").on("keyup", function(e) {
     if(e.which == 13 || e.keyCode == 13) {
-
-        if(isSearching === false){
-            isSearching = true;
-            clearInterval(timeInterval);
-            search();
-            countDown();
-            setTimeout(function(){isSearching = false;}, 2000);
-        }
+        initiateSearch();
     }
 });
 
 $(".button").on("click", function(){
+    initiateSearch();
+});
+
+
+
+
+//FUNCTIONS===================================
+// initiate search
+function initiateSearch(){
     if(isSearching === false){
+        resetBar();
         isSearching = true;
         clearInterval(timeInterval);
         search();
         countDown();
         setTimeout(function(){isSearching = false;}, 2000);
     }
-
-});
-
-
-//FUNCTIONS===================================
+}
 // Timer-----------------------------------
 function countDown(){
     var timeLeft = 60; //change time limit to 60 seconds - kenny 4/19
@@ -45,16 +44,23 @@ function countDown(){
     timeInterval = setInterval(function(){
         timeLeft--;
         barWidth -= (10/6); //visual correction for bar reduction for 60 secs in a 100% bar. - kenny 4/19
-        progressBar.style.width = barWidth + "%";
+        $("#progress1").css("width", barWidth + "%");
     
         if (timeLeft < 0){
             clearInterval(timeInterval);
-            alert("times up!");
+            alarmDiv.text("Reminder: You've been here for 1 minute.");
+            $(".outline").css("height", "25px");
+            $(".outline").prepend(alarmDiv);
+            // alert("times up!");
         }
     },1000);
 }
 
-
+// remove reminder text
+function resetBar(){
+    alarmDiv.remove();
+    $(".outline").css("height", "5px");
+}
 
 
 //Performs main search---------------------------------------------------------------------------------------------
