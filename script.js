@@ -81,8 +81,16 @@ function imageSearch(search) {
     })
     .then(function(response){
         console.log(response);
-        var url = response.photos.results[0].urls.regular; //change pull regular quality pictures instead of small
-        $("#cardImage").attr("src", url);
+        
+        console.log("total photos: " + response.photos.total);
+        if(response.photos.total === 0)
+        {
+            $("#cardImage").attr("src", "noImg.jpg");
+        }
+        else{
+            var url = response.photos.results[0].urls.regular; //change pull regular quality pictures instead of small
+            $("#cardImage").attr("src", url);
+        }
     });
 }
 
