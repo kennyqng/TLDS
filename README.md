@@ -29,7 +29,11 @@ As a user I want instant answers to my curiosities without the long research so 
 
 ## Usage
 
-Search<br/>
+**Search**
+<br/>
+* Type in a subject of interest<br/>
+* Click the arrow icon or press "Enter" to start search<br/>
+
 ![](tlds.gif)<br/>
 <br/>
 
