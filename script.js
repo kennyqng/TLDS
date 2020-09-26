@@ -52,6 +52,7 @@ function countDown(){
             $(".outline").css("height", "25px");
             $(".outline").prepend(alarmDiv);
             // alert("times up!");
+            glowUp();
         }
     },1000);
 }
@@ -60,8 +61,36 @@ function countDown(){
 function resetBar(){
     alarmDiv.remove();
     $(".outline").css("height", "5px");
+
+    clearInterval(glowInterval);
+    $("#contentShow").css("border-style", "none");
 }
 
+//card glow functions
+var glow = false;
+var glowInterval;
+function glowUp(){
+    glowInterval = setInterval(function(){
+        if (glow === false){
+            glow = true;
+            cardGlow();
+        }
+        else{
+            glow = false;
+            cardDim();
+        }
+    },500);
+
+}
+
+function cardGlow(){
+    $("#contentShow").css("border-style", "solid");
+    $("#contentShow").css("border-color", "#87D99E");
+}
+function cardDim(){
+    $("#contentShow").css("border-style", "grove");
+    $("#contentShow").css("border-color", "#5bb975");
+}
 
 //Performs main search---------------------------------------------------------------------------------------------
 function search() {
