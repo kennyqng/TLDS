@@ -22,16 +22,18 @@ An encyclopedia search that provides a short summary and a visual to give the us
 
 
 ## User Story
-As a user I want to track the time I go to bed and the time I wake up.
-I want to see the times along with a total time asleep 
-And visualize my sleep duration over time in a graph
+As a user I want instant answers to my curiosities without the long research so that I can continue on with my daily tasks.
 
 <br/>
 
 
 ## Usage
 
-Search<br/>
+**Search**
+<br/>
+* Type in a subject of interest<br/>
+* Click the arrow icon or press "Enter" to start search<br/>
+
 ![](tlds.gif)<br/>
 <br/>
 
@@ -51,7 +53,7 @@ Search<br/>
 
 MIT License
 
-Copyright (c) [2020] [Kenny Nguyen, Lauren Garelick, Rogelio Salgado, Dominador de la Cruz]
+Copyright (c) [2020] [Kenny Nguyen, Brandon Humphry, Evan Dobalian]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
