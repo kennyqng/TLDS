@@ -7,7 +7,7 @@ An encyclopedia search that provides a short summary and a visual to give the us
 
 <br/>
 
-## Click **[here](https://kennyqng.github.io/project-01/)** to visit the website!<br/>
+## Click **[here](https://kennyqng.github.io/TLDS/)** to visit the website!<br/>
 
 <br/>
 
